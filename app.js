@@ -2,11 +2,15 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+
+var debug = require(`debug`)(`app.js`);
+debug(`hello world`);
+
 var session = require("express-session");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var storeRouter = require('./routes/store');
 
 var app = express();
 var db = require("./Configuracion/database");
@@ -15,7 +19,7 @@ db.connect();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -37,6 +41,9 @@ app.use(
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/store', storeRouter);
+
+var aboutRouter = require("./routes/store");
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
