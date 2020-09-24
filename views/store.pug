@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  div(class="wrapper")
+    div(class="form-signin")
+      h1= title
+      div
+        span= message
+      form(action="/users/store",method="post")
+      
+        div(class="form-group")
+            label(for="idUser") Iduser
+            input(class="form-control" type="text", value="",name="idUser" placeholder="Iduser" autofocus)
+        div(class="form-group")
+            label(for="Name") name
+            input(class="form-control" type="text", value="",name="Name" placeholder="Name" autofocus) 
+        div(class="form-group")
+            label(for="url") Url
+            input(class="form-control" type="text", value="",name="url" placeholder="Url" autofocus)  
+
+        div(class="form-group")    
+            label(for="publicId") Publicid
+            input(class="form-control" type="text", value="",name="publicId" placeholder="Publicid" autofocus)
+        
+        div(class="form-group")
+            div(class="text-right")
+            button(class="btn btn-primary" type="submit") Sign in
