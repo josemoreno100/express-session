@@ -1,4 +1,6 @@
+const bcrypt = require("bcrypt-nodejs");
 const mongoose = require("mongoose");
+const users = require("../routes/users");
 
 const userSchema = new mongoose.Schema({
   firstName: String,
@@ -13,21 +15,21 @@ const userModel = mongoose.model("User", userSchema);
 module.exports = userModel;
 
 
-userSchema.pre('save', function(next){
-  const user = this;
-  if (!user.isModified('password')){
+/* userSchema.pre('create', function(next){
+  const usuario = this;
+  if (!usuario.isModified('password')){
     return next ();
   }
   bcrypt.genSalt(10, (err, salt) => {
     if (err) {
-      nest(err);
+      next(err);
     }
-    bcrypt.hash(user.password, salt, null, (err, hash) => {
+    bcrypt.hash(usuario.password, salt, null, (err, hash) => {
       if (err) {
         next (err);
       }
-      user.password = hash; 
+      usuario.password = hash; 
       next(); 
-    }) 
-  })
-})
+    }); 
+  });
+}); */
