@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 const User = require("../Modelos/user");
 
@@ -14,10 +17,22 @@ router.get('/registro', function(req, res, next) {
 });
 
 router.post('/registro', function(req, res, next) {
+ 
   console.log(req.body);
-let message = '';
+  const hash = bcrypt.hashSync(req.body.password, saltRounds);
+// Store hash in your password DB.
+  let usuario = { 
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: hash
 
-    User.create(req.body).then(res => {
+};
+ console.log(usuario);
+ 
+let message = '';
+   
+    User.create(usuario).then(res => {
 
     message = 'Usuario registrado';
 
