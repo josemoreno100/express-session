@@ -9,12 +9,6 @@ const userSchema = new mongoose.Schema({
   password: String,
   isActive: Boolean
 });
-
-const userModel = mongoose.model("User", userSchema);
-
-module.exports = userModel;
-
-
 /* userSchema.pre('create', function(next){
   const usuario = this;
   if (!usuario.isModified('password')){
@@ -33,3 +27,9 @@ module.exports = userModel;
     }); 
   });
 }); */
+
+const userModel = mongoose.model("User", userSchema);
+
+module.exports = userModel;
+
+
