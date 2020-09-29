@@ -35,7 +35,7 @@ app.use(
     name: "app",
     resave: true,
     saveUninitialized: true,
-    cookie: { maxAge: 6000 }
+    // cookie: { maxAge: 6000 }
   })
 );
 
